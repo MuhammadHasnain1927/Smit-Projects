@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secure Supabase Todo App</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1 id="app-title">Taskroom</h1>
+        <div style="display: flex; gap: 0.5rem; align-items: center">
+          <button id="theme-toggle" class="btn-text">🌓 Theme</button>
+          <button id="logout-btn" class="btn-text hidden">Sign Out</button>
+        </div>
+      </div>
+
+      <div id="auth-screen" class="card">
+        <h2 id="auth-title" style="margin-bottom: 1rem">Sign In</h2>
+        <form id="auth-form" class="auth-form">
+          <div class="form-group">
+            <label>Email Address</label>
+            <input
+              type="email"
+              id="auth-email"
+              required
+              placeholder="you@example.com"
+            />
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              id="auth-password"
+              required
+              placeholder="••••••••"
+            />
+          </div>
+          <button type="submit" id="auth-submit-btn" class="btn-primary">
+            Sign In
+          </button>
+        </form>
+        <div style="margin-top: 1rem; text-align: center">
+          <button
+            id="auth-toggle-mode"
+            class="btn-text"
+            style="font-size: 0.9rem"
+          ></button>
+        </div>
+      </div>
+
+      <div id="dashboard-screen" class="hidden">
+        <div class="card">
+          <h3 id="form-heading" style="margin-bottom: 1rem">Create New Task</h3>
+          <form id="todo-form" class="auth-form">
+            <input type="hidden" id="edit-todo-id" />
+            <div class="form-group">
+              <input
+                type="text"
+                id="todo-title"
+                placeholder="What needs to be done? *"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <textarea
+                id="todo-desc"
+                placeholder="Add details or context (optional)"
+                rows="2"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label style="font-size: 0.85rem; color: var(--text-secondary)"
+                >Optional Due Date</label
+              >
+              <input type="date" id="todo-due" />
+            </div>
+            <div style="display: flex; gap: 0.5rem">
+              <button
+                type="submit"
+                id="todo-submit-btn"
+                class="btn-primary"
+                style="flex: 1"
+              >
+                Add Task
+              </button>
+              <button
+                type="button"
+                id="cancel-edit-btn"
+                class="btn-text hidden"
+              >
+                Cancel Edit
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="controls-row">
+          <input
+            type="text"
+            id="search-bar"
+            class="search-input"
+            placeholder="Search tasks by title..."
+          />
+          <select id="filter-status">
+            <option value="all">All Statuses</option>
+            <option value="pending">Pending Only</option>
+            <option value="completed">Completed Only</option>
+          </select>
+        </div>
+
+        <div
+          id="todo-list-container"
+          class="card"
+          style="padding: 0 1.5rem"
+        ></div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
